@@ -7,10 +7,8 @@ const About = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.2 }
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
+      { threshold: 0.25 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -21,31 +19,53 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-24 md:py-32 px-6 md:px-12 lg:px-24"
-      style={{ backgroundColor: "hsl(var(--warm-white))" }}
+      className="bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24"
+      style={{ paddingTop: "10rem", paddingBottom: "8rem" }}
     >
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Image */}
+      <div
+        className="
+          max-w-7xl mx-auto
+          grid
+          grid-cols-1
+          md:grid-cols-[520px_1fr]
+          gap-20
+          items-start
+        "
+      >
+        {/* IMAGE — LEFT */}
         <div className={isVisible ? "fade-in-up" : "opacity-0"}>
           <img
             src={aboutImage}
             alt="NOVANI Studio Workspace"
-            className="w-full h-[500px] object-cover rounded-sm shadow-lg"
+            className="
+              w-full
+              h-[460px]
+              object-cover
+              rounded-sm
+              shadow-xl
+            "
           />
         </div>
 
-        {/* Text */}
+        {/* TEXT — RIGHT */}
         <div className={isVisible ? "fade-in-up delay-200" : "opacity-0"}>
           <h2
-            className="font-serif text-4xl md:text-6xl mb-6"
-            style={{ color: "hsl(var(--charcoal))" }}
+            className="font-serif mb-10"
+            style={{
+              fontSize: "clamp(2.6rem, 4vw, 4.5rem)",
+              color: "hsl(var(--charcoal))",
+            }}
           >
             About NOVANI Studio
           </h2>
 
           <div
-            className="space-y-4 font-sans text-base md:text-lg leading-relaxed"
-            style={{ color: "hsla(var(--foreground), 0.8)" }}
+            className="font-sans space-y-6"
+            style={{
+              color: "hsla(var(--foreground), 0.8)",
+              fontSize: "1.05rem",
+              lineHeight: "1.8",
+            }}
           >
             <p>
               NOVANI Studio is a luxury-focused interior design studio based in

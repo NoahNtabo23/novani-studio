@@ -20,30 +20,34 @@ const Hero = ({ onExploreClick }: HeroProps) => {
         {/* Dark overlay */}
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: "hsla(var(--charcoal), 0.5)" }}
+          style={{ backgroundColor: "hsla(var(--charcoal), 0.62)" }}
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center pt-16">
         <h1
-          className="font-serif text-5xl md:text-7xl lg:text-8xl mb-6 fade-in-up"
-          style={{ color: "hsl(var(--warm-white))" }}
+          className="font-serif leading-tight mb-8 fade-in-up"
+          style={{
+            color: "hsl(var(--warm-white))",
+            fontSize: "clamp(3.2rem, 6vw, 6.6rem)",
+            letterSpacing: "0.02em",
+          }}
         >
-          Elevated Living. Refined Interiors.
+          Elevated Living. Refined<br />Interiors.
         </h1>
 
         <p
-          className="font-sans text-lg md:text-xl mb-12 max-w-2xl fade-in-up delay-200"
-          style={{ color: "hsla(var(--warm-white), 0.9)" }}
+          className="font-sans text-base md:text-lg max-w-2xl mb-12 fade-in-up delay-200"
+          style={{ color: "hsla(var(--warm-white), 0.85)" }}
         >
           NOVANI Studio — Luxury Kitchen & Interior Design in Nairobi.
         </p>
 
-        {/* CTA Button (replaces shadcn Button) */}
+        {/* CTA Button */}
         <button
           onClick={onExploreClick}
-          className="px-8 py-6 text-base font-medium transition-luxury fade-in-up delay-400"
+          className="px-10 py-4 text-sm md:text-base font-medium transition-luxury fade-in-up delay-400 rounded-md"
           style={{
             backgroundColor: "hsl(var(--gold))",
             color: "hsl(var(--charcoal))",
