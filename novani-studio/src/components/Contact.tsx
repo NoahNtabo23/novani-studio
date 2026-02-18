@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";// for displaying alerts
+import { toast } from "sonner";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -22,9 +22,7 @@ const Contact = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.2 }
     );
 
@@ -34,9 +32,10 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
       contactSchema.parse(formData);
-      toast.success("Thank you! We'll be in touch soon.");
+      toast.success("Thank you. Our studio will be in touch shortly.");
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -49,12 +48,14 @@ const Contact = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-24 md:py-32 px-6 md:px-12 lg:px-24"
+      className="py-32 px-6 md:px-12 lg:px-24"
       style={{ backgroundColor: "hsl(var(--warm-white))" }}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-3xl mx-auto text-center">
+
+        {/* Heading */}
         <h2
-          className={`font-serif text-4xl md:text-6xl mb-6 text-center uppercase tracking-wider ${
+          className={`font-serif text-5xl md:text-6xl tracking-wide mb-6 ${
             isVisible ? "fade-in-up" : "opacity-0"
           }`}
           style={{ color: "hsl(var(--charcoal))" }}
@@ -62,8 +63,9 @@ const Contact = () => {
           Get In Touch
         </h2>
 
+        {/* Subheading */}
         <p
-          className={`font-sans text-xl md:text-2xl mb-6 text-center ${
+          className={`text-xl md:text-2xl mb-8 ${
             isVisible ? "fade-in-up delay-200" : "opacity-0"
           }`}
           style={{ color: "hsl(var(--charcoal))" }}
@@ -71,18 +73,16 @@ const Contact = () => {
           Elevate your space with refined, timeless design.
         </p>
 
+        {/* Description */}
         <div
-          className={`font-sans text-base mb-4 text-center max-w-2xl mx-auto ${
-            isVisible ? "fade-in-up" : "opacity-0"
+          className={`space-y-3 mb-16 ${
+            isVisible ? "fade-in-up delay-300" : "opacity-0"
           }`}
-          style={{ color: "hsla(var(--foreground), 0.7)" }}
+          style={{ color: "hsla(var(--foreground), 0.65)" }}
         >
-          <p className="mb-2">
-            At NOVANI Studio, every project begins with a conversation.
-          </p>
-          <p className="mb-2">
-            Share a few details below, and a member of our team will reach out
-            within 24 hours.
+          <p>Every project begins with a conversation.</p>
+          <p>
+            Share a few details below and our team will respond within 24 hours.
           </p>
           <p className="italic">
             Your journey to an elevated, bespoke interior starts here.
@@ -92,54 +92,31 @@ const Contact = () => {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className={`space-y-6 mb-12 ${
+          className={`space-y-8 ${
             isVisible ? "fade-in-up delay-400" : "opacity-0"
           }`}
         >
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={(e) =>
-              setFormData({ ...formData, name: e.target.value })
-            }
-            required
-            className="w-full px-4 py-4 border rounded-sm font-sans transition-luxury focus:outline-none"
-            style={{
-              backgroundColor: "hsl(var(--cream))",
-              borderColor: "hsl(var(--border))",
-            }}
-          />
+          {/* Inputs */}
+          {["name", "email", "phone"].map((field, index) => (
+            <input
+              key={field}
+              type={field === "email" ? "email" : "text"}
+              placeholder={
+                field === "name"
+                  ? "Full Name"
+                  : field === "email"
+                  ? "Email Address"
+                  : "Phone Number (Optional)"
+              }
+              value={(formData as any)[field]}
+              onChange={(e) =>
+                setFormData({ ...formData, [field]: e.target.value })
+              }
+              className="w-full px-6 py-5 rounded-md border bg-[hsl(var(--cream))] border-[hsl(var(--border))] text-sm transition-all duration-500 focus:outline-none focus:border-[hsl(var(--gold))] focus:bg-white"
+            />
+          ))}
 
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            required
-            className="w-full px-4 py-4 border rounded-sm font-sans transition-luxury focus:outline-none"
-            style={{
-              backgroundColor: "hsl(var(--cream))",
-              borderColor: "hsl(var(--border))",
-            }}
-          />
-
-          <input
-            type="tel"
-            placeholder="Phone Number (Optional)"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
-            className="w-full px-4 py-4 border rounded-sm font-sans transition-luxury focus:outline-none"
-            style={{
-              backgroundColor: "hsl(var(--cream))",
-              borderColor: "hsl(var(--border))",
-            }}
-          />
-
+          {/* Message */}
           <div>
             <textarea
               rows={6}
@@ -148,92 +125,78 @@ const Contact = () => {
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
-              required
-              className="w-full px-4 py-4 border rounded-sm font-sans transition-luxury resize-none focus:outline-none"
-              style={{
-                backgroundColor: "hsl(var(--cream))",
-                borderColor: "hsl(var(--border))",
-              }}
+              className="w-full px-6 py-5 rounded-md border bg-[hsl(var(--cream))] border-[hsl(var(--border))] text-sm resize-none transition-all duration-500 focus:outline-none focus:border-[hsl(var(--gold))] focus:bg-white"
             />
+
             <p
-              className="text-sm mt-2 font-sans"
-              style={{ color: "hsla(var(--foreground), 0.6)" }}
+              className="text-sm mt-3"
+              style={{ color: "hsla(var(--foreground), 0.55)" }}
             >
-              Tell us a little about your project or the space you'd like
-              transformed.
+              Tell us about your space and design goals.
             </p>
           </div>
 
+          {/* Button */}
           <button
-            type="submit"
-            className="w-full py-6 text-base font-medium transition-luxury"
-            style={{
-              backgroundColor: "hsl(var(--gold))",
-              color: "hsl(var(--charcoal))",
-            }}
-          >
+              type="submit"
+              className="
+                w-full py-6 rounded-md text-sm tracking-widest font-semibold
+                transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+                hover:-translate-y-1 hover:shadow-xl
+                active:-translate-y-1 active:shadow-xl
+              "
+              style={{
+                backgroundColor: "hsl(var(--gold))",
+                color: "hsl(var(--charcoal))",
+              }}
+            >
             Request a Consultation
           </button>
+
         </form>
 
         {/* Direct contact */}
-        <div
-          className={`pt-12 ${
-            isVisible ? "fade-in-up" : "opacity-0"
-          }`}
-          style={{ borderTop: "1px solid hsl(var(--border))" }}
-        >
+        <div className="mt-20 pt-12 border-t border-[hsl(var(--border))]">
           <p
-            className="font-sans text-lg mb-6 text-center"
+            className="text-lg mb-6"
             style={{ color: "hsl(var(--charcoal))" }}
           >
-            Prefer a direct chat?
+            Prefer a direct conversation?
           </p>
 
           <div
-            className="space-y-4 text-center font-sans"
-            style={{ color: "hsla(var(--foreground), 0.7)" }}
+            className="space-y-3"
+            style={{ color: "hsla(var(--foreground), 0.65)" }}
           >
             <p>
               <a
-                href="https://wa.me/254797376009"
+                href="https://wa.me/254742981681"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline transition-opacity hover:opacity-80"
-                style={{ color: "hsl(var(--gold))" }}
+                className="hover:text-[hsl(var(--gold))] transition-colors duration-500"
               >
-                Chat with us on WhatsApp
+                WhatsApp: +254 742 981 681
               </a>
             </p>
 
             <p>
-              Email us at{" "}
               <a
-                href="mailto:hello@novanistudio.com"
-                style={{ color: "hsl(var(--gold))" }}
+                href="mailto:novanistudio.ke@gmail.com"
+                className="hover:text-[hsl(var(--gold))] transition-colors duration-500"
               >
-                hello@novanistudio.com
-              </a>
-            </p>
-
-            <p>
-              Call us at{" "}
-              <a
-                href="tel:+254750850551"
-                style={{ color: "hsl(var(--gold))" }}
-              >
-                +254 750 850 551
+                novanistudio.ke@gmail.com
               </a>
             </p>
           </div>
 
           <p
-            className="text-sm text-center mt-8 italic"
-            style={{ color: "hsla(var(--foreground), 0.6)" }}
+            className="text-sm mt-8 italic"
+            style={{ color: "hsla(var(--foreground), 0.5)" }}
           >
             Your information is kept strictly confidential.
           </p>
         </div>
+
       </div>
     </section>
   );

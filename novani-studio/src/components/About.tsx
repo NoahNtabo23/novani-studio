@@ -2,28 +2,31 @@ import { useEffect, useRef, useState } from "react";
 import aboutImage from "@/assets/about-studio.jpg";
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);//State to control animation
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    //An observer to trigger animation when the section is in view
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.25 }
+      { threshold: 0.25 }//Trigger when 25% of the section is visible
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    return () => observer.disconnect();//Cleans up once section is visible
   }, []);
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32"
+      className="bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32" //Background and padding for the section,With the hsl variable it can be changed in an instant
     >
       <div className="max-w-6xl mx-auto">
 
-        <div className="flex flex-col md:flex-row gap-16 ">
+        
+        <div className="flex flex-col md:flex-row gap-16 " //Layout for image and text,Stacked on mobile and side by side on larger screens
+        > 
 
              
 

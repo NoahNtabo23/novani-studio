@@ -22,27 +22,32 @@ const HamburgerMenu = ({ onNavigate }: HamburgerMenuProps) => {
 
   return (
     <>
-      {/* Toggle button */}
+      {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Menu"
-        className="fixed top-6 right-6 z-50 p-3 rounded-sm transition-luxury"
-        style={{
-          backgroundColor: "hsl(var(--gold))",
-          color: "hsl(var(--charcoal))",
-        }}
+        className="
+          fixed top-6 right-6 z-50 p-3 rounded-md
+          bg-[hsl(var(--gold))] text-[hsl(var(--charcoal))]
+          transition-all duration-500
+          hover:scale-105 hover:shadow-xl
+          active:scale-95
+        "
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-40 backdrop-blur-sm transition-opacity duration-700 ${
-          isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        style={{ backgroundColor: "hsla(var(--charcoal), 0.95)" }}
+        className={`
+          fixed inset-0 z-40
+          backdrop-blur-md
+          transition-all duration-700
+          ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+        `}
+        style={{
+          backgroundColor: "rgba(15,15,15,0.92)", // darker for white sections
+        }}
         onClick={() => setIsOpen(false)}
       >
         <nav
@@ -53,21 +58,33 @@ const HamburgerMenu = ({ onNavigate }: HamburgerMenuProps) => {
             <button
               key={item.section}
               onClick={() => handleNavigate(item.section)}
-              className={`font-serif text-5xl md:text-7xl mb-8 transition-luxury ${
-                isOpen ? "fade-in-up" : ""
-              }`}
+              className="
+                relative font-serif
+                text-5xl md:text-7xl mb-10
+                text-[hsl(var(--warm-white))]
+                transition-all duration-500
+                hover:text-[hsl(var(--gold))]
+                active:text-[hsl(var(--gold))]
+                active:scale-95
+                group
+              "
               style={{
-                color: "hsl(var(--warm-white))",
                 animationDelay: `${index * 100}ms`,
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "hsl(var(--gold))")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "hsl(var(--warm-white))")
-              }
             >
               {item.label}
+
+              {/* Gold Underline */}
+              <span
+                className="
+                  absolute left-1/2 -bottom-3
+                  h-1px w-0
+                  bg-[hsl(var(--gold))]
+                  transition-all duration-500
+                  group-hover:w-20 group-hover:-translate-x-1/2
+                  group-active:w-20 group-active:-translate-x-1/2
+                "
+              />
             </button>
           ))}
         </nav>

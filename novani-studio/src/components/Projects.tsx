@@ -13,19 +13,22 @@ const projects = [
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeProject, setActiveProject] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  const handleTap = (id: number) => {
+    setActiveProject(activeProject === id ? null : id);
+  };
 
   return (
     <section
@@ -45,45 +48,51 @@ const Projects = () => {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`group relative overflow-hidden rounded-sm shadow-lg cursor-pointer ${
-                isVisible ? "fade-in-up" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Image */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+          {projects.map((project, index) => {
+            const isActive = activeProject === project.id;
 
-              {/* Overlay */}
+            return (
               <div
-                className="absolute inset-0 transition-all duration-500 flex items-center justify-center"
-                style={{
-                  backgroundColor: "hsla(var(--charcoal), 0)",
-                }}
+                key={project.id}
+                onClick={() => handleTap(project.id)}
+                className={`group relative overflow-hidden rounded-sm shadow-lg cursor-pointer ${
+                  isVisible ? "fade-in-up" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div
-                  className="absolute inset-0 transition-all duration-500 group-hover:opacity-100"
-                  style={{
-                    backgroundColor: "hsla(var(--charcoal), 0.6)",
-                    opacity: 0,
-                  }}
+                {/* Image */}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={`w-full h-500px object-cover transition-transform duration-700 
+                    ${isActive ? "scale-110" : "group-hover:scale-110"}
+                  `}
                 />
 
-                <h3
-                  className="relative font-serif text-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0"
-                  style={{ color: "hsl(var(--warm-white))" }}
-                >
-                  {project.title}
-                </h3>
+                {/* Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center transition-all duration-500">
+                  <div
+                    className={`absolute inset-0 transition-all duration-500 ${
+                      isActive
+                        ? "opacity-100 bg-[hsla(var(--charcoal),0.6)]"
+                        : "opacity-0 group-hover:opacity-100 bg-[hsla(var(--charcoal),0.6)]"
+                    }`}
+                  />
+
+                  <h3
+                    className={`relative font-serif text-3xl transition-all duration-500 transform ${
+                      isActive
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
+                    }`}
+                    style={{ color: "hsl(var(--warm-white))" }}
+                  >
+                    {project.title}
+                  </h3>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

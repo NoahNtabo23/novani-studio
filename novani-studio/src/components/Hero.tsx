@@ -8,38 +8,35 @@ const Hero = ({ onExploreClick }: HeroProps) => {
   return (
     <section
       id="home"
-      className="relative h-screen w-full overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Luxury Kitchen Interior by NOVANI Studio"
-          className="w-full h-full object-cover"
-        />
-        {/* Dark overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ backgroundColor: "hsla(var(--charcoal), 0.62)" }}
-        />
-      </div>
+      {/* Background Image */}
+      <img
+        src={heroImage}
+        alt="Luxury Kitchen Interior by NOVANI Studio"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* VERY LIGHT overlay just for readability */}
+      <div className="absolute inset-0 bg-black/25" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center pt-16">
+      <div className="relative z-10 text-center px-6 pt-24 pb-32 md:pt-32 md:pb-40 max-w-5xl mx-auto">
+
+        {/* Headline */}
         <h1
-          className="font-serif leading-tight mb-8 fade-in-up"
+          className="font-serif text-white leading-[1.08] tracking-[0.04em] mb-10"
           style={{
-            color: "hsl(var(--warm-white))",
-            fontSize: "clamp(3.2rem, 6vw, 6.6rem)",
-            letterSpacing: "0.02em",
+            fontSize: "clamp(2.8rem, 6vw, 6.5rem)",
           }}
         >
-          Elevated Living. Refined<br />Interiors.
+          Elevated Living. Refined<br />
+          Interiors.
         </h1>
 
+        {/* Subheadline */}
         <p
-          className="font-sans text-base md:text-lg max-w-2xl mb-12 fade-in-up delay-200"
-          style={{ color: "hsla(var(--warm-white), 0.85)" }}
+          className="text-white/85 text-base md:text-lg tracking-wide mb-14"
         >
           NOVANI Studio — Luxury Kitchen & Interior Design in Nairobi.
         </p>
@@ -47,7 +44,16 @@ const Hero = ({ onExploreClick }: HeroProps) => {
         {/* CTA Button */}
         <button
           onClick={onExploreClick}
-          className="px-10 py-4 text-sm md:text-base font-medium transition-luxury fade-in-up delay-400 rounded-md"
+          className="
+            px-12 py-5
+            text-sm md:text-base
+            font-semibold
+            tracking-widest
+            rounded-md
+            transition-all duration-500
+            hover:-translate-y-1 hover:shadow-xl
+            active:scale-[0.97]
+          "
           style={{
             backgroundColor: "hsl(var(--gold))",
             color: "hsl(var(--charcoal))",
@@ -57,12 +63,9 @@ const Hero = ({ onExploreClick }: HeroProps) => {
         </button>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in delay-800">
-        <div
-          className="w-1px h-16 animate-pulse"
-          style={{ backgroundColor: "hsla(var(--warm-white), 0.3)" }}
-        />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <div className="w-px h-16 bg-white/40 animate-pulse" />
       </div>
     </section>
   );
