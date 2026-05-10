@@ -1,5 +1,45 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
+
+// Custom minimal hamburger icon - three lines (architectural, clean)
+const MinimalHamburgerIcon = () => (
+  <svg 
+    width="28" 
+    height="22" 
+    viewBox="0 0 28 22" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    aria-hidden="true"
+  >
+    <line 
+      x1="2" 
+      y1="4" 
+      x2="26" 
+      y2="4" 
+      stroke="currentColor" 
+      strokeWidth="1" 
+      strokeLinecap="round"
+    />
+    <line 
+      x1="2" 
+      y1="11" 
+      x2="26" 
+      y2="11" 
+      stroke="currentColor" 
+      strokeWidth="1" 
+      strokeLinecap="round"
+    />
+    <line 
+      x1="2" 
+      y1="18" 
+      x2="26" 
+      y2="18" 
+      stroke="currentColor" 
+      strokeWidth="1" 
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
 interface HamburgerMenuProps {
   onNavigate: (section: string) => void;
@@ -7,6 +47,24 @@ interface HamburgerMenuProps {
 
 const HamburgerMenu = ({ onNavigate }: HamburgerMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHero, setIsHero] = useState(true);
+
+  // Detect when we've scrolled past the hero section
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById('home');
+      if (heroSection) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollPosition = window.scrollY + 100; // 100px offset for comfort
+        setIsHero(scrollPosition < heroBottom);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { label: "Home", section: "home" },
@@ -22,32 +80,39 @@ const HamburgerMenu = ({ onNavigate }: HamburgerMenuProps) => {
 
   return (
     <>
-      {/* Toggle Button */}
+      {/* Toggle Button - Adaptive color based on scroll position */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Menu"
-        className="
-          fixed top-6 right-6 z-50 p-3 rounded-md
-          bg-[hsl(var(--gold))] text-[hsl(var(--charcoal))]
+        className={`
+          fixed top-6 right-6 z-50 
+          p-2
           transition-all duration-500
-          hover:scale-105 hover:shadow-xl
+          hover:scale-105
           active:scale-95
-        "
+          focus:outline-none focus:ring-1 focus:ring-[hsl(var(--gold))]/50
+          rounded-full
+        `}
+        style={{
+          backgroundColor: "transparent",
+          color: isHero ? "white" : "hsl(var(--charcoal))",
+        }}
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? (
+          <X size={24} strokeWidth={1.5} />
+        ) : (
+          <MinimalHamburgerIcon />
+        )}
       </button>
 
       {/* Overlay */}
       <div
         className={`
           fixed inset-0 z-40
-          backdrop-blur-md
+          bg-[hsl(var(--charcoal))]/95 backdrop-blur-md
           transition-all duration-700
           ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}
-        style={{
-          backgroundColor: "rgba(15,15,15,0.92)", // darker for white sections
-        }}
         onClick={() => setIsOpen(false)}
       >
         <nav
@@ -58,31 +123,38 @@ const HamburgerMenu = ({ onNavigate }: HamburgerMenuProps) => {
             <button
               key={item.section}
               onClick={() => handleNavigate(item.section)}
-              className="
-                relative font-serif
-                text-5xl md:text-7xl mb-10
+              className={`
+                relative
+                text-5xl md:text-6xl lg:text-7xl
+                mb-10 md:mb-12
                 text-[hsl(var(--warm-white))]
-                transition-all duration-500
                 hover:text-[hsl(var(--gold))]
-                active:text-[hsl(var(--gold))]
+                transition-all duration-500
                 active:scale-95
                 group
-              "
+                ${isOpen ? "fade-in-up" : ""}
+              `}
               style={{
                 animationDelay: `${index * 100}ms`,
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
               }}
             >
               {item.label}
 
-              {/* Gold Underline */}
+              {/* Subtle underline on hover */}
               <span
                 className="
-                  absolute left-1/2 -bottom-3
-                  h-[1px] w-0
+                  absolute
+                  left-1/2 
+                  -bottom-3
+                  h-px
+                  w-0
                   bg-[hsl(var(--gold))]
                   transition-all duration-500
-                  group-hover:w-20 group-hover:-translate-x-1/2
-                  group-active:w-20 group-active:-translate-x-1/2
+                  group-hover:w-12 group-hover:-translate-x-1/2
                 "
               />
             </button>

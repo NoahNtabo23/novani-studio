@@ -39,7 +39,10 @@ const Index = () => {
       >
         <Logo />
         <HamburgerMenu onNavigate={scrollToSection} /> 
-        <Hero onExploreClick={() => scrollToSection("projects")} />
+       <Hero 
+          onExploreClick={() => scrollToSection("projects")}
+          onContactClick={() => scrollToSection("contact")}
+        />
         <About />
         
         {/* Lazy loaded sections with Suspense */}

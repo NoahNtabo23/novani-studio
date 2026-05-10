@@ -71,7 +71,6 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Check scroll position to show/hide arrows
   const checkScrollPosition = () => {
     const container = galleryScrollRef.current;
     if (!container) return;
@@ -85,7 +84,6 @@ const Projects = () => {
     const container = galleryScrollRef.current;
     if (container && activeProject !== null) {
       container.addEventListener('scroll', checkScrollPosition);
-      // Initial check after gallery renders
       setTimeout(checkScrollPosition, 100);
       return () => container.removeEventListener('scroll', checkScrollPosition);
     }
@@ -97,12 +95,10 @@ const Projects = () => {
 
     if (newProject !== null) {
       setTimeout(() => {
-        // reset gallery scroll to first image
         galleryScrollRef.current?.scrollTo({
           left: 0,
           behavior: "instant",
         });
-        // Reset arrow visibility after scroll reset
         setTimeout(() => {
           setShowLeftArrow(false);
           setShowRightArrow(true);
@@ -142,12 +138,18 @@ const Projects = () => {
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* Title */}
+        {/* Title - Updated to Inter Light */}
         <h2
-          className={`font-serif text-4xl md:text-6xl mb-16 text-center ${
+          className={`text-4xl md:text-6xl mb-16 text-center ${
             isVisible ? "fade-in-up" : "opacity-0"
           }`}
-          style={{ color: "hsl(var(--charcoal))" }}
+          style={{ 
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            letterSpacing: "0.15em",
+            color: "hsl(var(--charcoal))",
+            textTransform: "uppercase",
+          }}
         >
           Our Projects
         </h2>
@@ -156,7 +158,6 @@ const Projects = () => {
         <div className="grid md:grid-cols-2 gap-8">
 
           {projects.map((project, index) => (
-
             <div
               key={project.id}
               onClick={() => handleProjectClick(project.id)}
@@ -165,50 +166,57 @@ const Projects = () => {
               }`}
               style={{ animationDelay: `${index * 120}ms` }}
             >
-
               <img
-                  src={project.cover}
-                  alt={`${project.title} interior design project by NOVANI Studio, Nairobi - click to view gallery`}
-                  className="w-full h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
+                src={project.cover}
+                alt={`${project.title} interior design project by NOVANI Studio, Nairobi - click to view gallery`}
+                className="w-full h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 flex items-end md:items-center justify-center">
+              {/* Always visible overlay with category name */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                <div className="absolute inset-0 bg-[hsla(var(--charcoal),0.55)] opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500" />
-
+              {/* Category Title - Always visible - Updated to Inter Light */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                 <h3
-                  className="relative font-serif text-2xl md:text-3xl tracking-wide px-6 py-6 text-center transform transition-all duration-500
-                  translate-y-0 md:translate-y-6 md:group-hover:translate-y-0
-                  opacity-100 md:opacity-0 md:group-hover:opacity-100"
-                  style={{ color: "hsl(var(--warm-white))" }}
+                  className="text-white"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    letterSpacing: "0.15em",
+                    fontSize: "clamp(1.25rem, 3vw, 1.875rem)",
+                    textTransform: "uppercase",
+                  }}
                 >
-                  {project.title.toUpperCase()}
+                  {project.title}
                 </h3>
-
+                
+                {/* Subtle indicator line */}
+                <div className="w-12 h-px bg-white/50 mt-3 group-hover:w-24 transition-all duration-500" />
               </div>
-
             </div>
-
           ))}
-
         </div>
 
         {/* Gallery Section */}
         {activeGallery && (
-
           <div ref={galleryRef} className="mt-20 fade-in-up">
+            <div className="w-24 h-px bg-[hsl(var(--gold))] opacity-60 mb-10 mx-auto" />
 
-            <div className="w-24 h-px bg-[hsl(var(--gold))] opacity-60 mb-10 mx-auto"></div>
-
+            {/* Gallery Title - Updated to Inter Light */}
             <h3
-              className="font-serif text-3xl text-center mb-12"
-              style={{ color: "hsl(var(--charcoal))" }}
+              className="text-3xl text-center mb-12"
+              style={{ 
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                color: "hsl(var(--charcoal))",
+                textTransform: "uppercase",
+              }}
             >
               {activeGallery.title}
             </h3>
 
             <div className="relative group/gallery">
-
               {/* Left Navigation Arrow */}
               <button
                 onClick={() => scrollGallery('left')}
@@ -273,11 +281,11 @@ const Projects = () => {
                 </svg>
               </button>
 
-              {/* subtle fade hints - enhanced to indicate scrollable content */}
+              {/* Fade hints */}
               <div className="pointer-events-none absolute left-0 top-0 h-full w-12 md:w-20 bg-gradient-to-r from-[hsl(var(--cream))] via-[hsl(var(--cream))/80] to-transparent z-10" />
               <div className="pointer-events-none absolute right-0 top-0 h-full w-12 md:w-20 bg-gradient-to-l from-[hsl(var(--cream))] via-[hsl(var(--cream))/80] to-transparent z-10" />
 
-              {/* Scroll Indicator (shows when there are more images) */}
+              {/* Scroll Indicator */}
               {showRightArrow && (
                 <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-1 md:hidden">
                   <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--gold))] animate-pulse" />
@@ -294,7 +302,7 @@ const Projects = () => {
                 {activeGallery.gallery.map((img, index) => (
                   <div
                     key={index}
-                    className="snap-start min-w-[360px] md:min-w-[420px] h-[320px] md:h-[420px] overflow-hidden rounded-sm shadow-lg flex-shrink-0 group/img"
+                    className="snap-start min-w-[360px] md:min-w-[420px] h-[320px] md:h-[420px] overflow-hidden rounded-sm shadow-lg flex-shrink-0 group/img relative"
                   >
                     <img
                       src={img}
@@ -302,25 +310,19 @@ const Projects = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
                       loading="lazy"
                     />
-                    {/* Optional: subtle image counter on hover */}
-                    <div className="absolute bottom-3 right-3 bg-[hsl(var(--charcoal))/60] backdrop-blur-sm px-2 py-1 rounded text-xs text-[hsl(var(--gold))] opacity-0 group-hover/img:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-3 right-3 bg-[hsl(var(--charcoal))/60] backdrop-blur-sm px-2 py-1 rounded-sm text-[10px] text-[hsl(var(--gold))] opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 font-light tracking-wide">
                       {index + 1} / {activeGallery.gallery.length}
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Gallery hint text */}
-              <p className="text-center text-sm mt-4 opacity-60" style={{ color: "hsla(var(--foreground), 0.5)" }}>
+              <p className="text-center text-sm mt-4 opacity-60 font-light tracking-wide" style={{ color: "hsla(var(--foreground), 0.5)" }}>
                 ←  Scroll or use arrows to explore  →
               </p>
-
             </div>
-
           </div>
-
         )}
-
       </div>
     </section>
   );

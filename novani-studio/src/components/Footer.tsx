@@ -63,7 +63,6 @@ const Footer = ({ onNavigate }: FooterProps) => {
       {/* Subtle Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-size:20px_20px]" />
 
-    
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Gold Accent Line */}
@@ -74,10 +73,24 @@ const Footer = ({ onNavigate }: FooterProps) => {
 
           {/* Brand */}
           <div className="space-y-6">
-            <h3 className="font-serif text-3xl tracking-wide">
+            <h3 
+              className="text-3xl tracking-wide"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
               NOVANI Studio
             </h3>
-            <p className="text-sm leading-relaxed text-[hsl(var(--warm-white))/80] max-w-sm">
+            <p className="text-sm leading-relaxed text-[hsl(var(--warm-white))/80] max-w-sm"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.03em",
+              }}
+            >
               Luxury interior design studio specializing in premium kitchens,
               wardrobes, and refined residential interiors in Nairobi and its
               environs.
@@ -86,7 +99,15 @@ const Footer = ({ onNavigate }: FooterProps) => {
 
           {/* Navigation */}
           <div className="space-y-6">
-            <h4 className="font-serif text-lg tracking-wide">
+            <h4 
+              className="text-lg tracking-wide"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
               Quick Links
             </h4>
             <nav className="flex flex-col space-y-3">
@@ -95,6 +116,11 @@ const Footer = ({ onNavigate }: FooterProps) => {
                   key={link.id}
                   onClick={() => onNavigate(link.id)}
                   className="text-sm text-left text-[hsl(var(--warm-white))/70] transition-all duration-500 hover:text-[hsl(var(--gold))]"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    letterSpacing: "0.06em",
+                  }}
                 >
                   {link.label}
                 </button>
@@ -104,30 +130,74 @@ const Footer = ({ onNavigate }: FooterProps) => {
 
           {/* Contact */}
           <div className="space-y-6">
-            <h4 className="font-serif text-lg tracking-wide">
+            <h4 
+              className="text-lg tracking-wide"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
               Contact
             </h4>
             <div className="space-y-4 text-sm text-[hsl(var(--warm-white))/80]">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 mt-1 shrink-0 text-[hsl(var(--gold))]" />
-                <span>Nairobi, Kenya</span>
+                <span 
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  Nairobi, Kenya
+                </span>
               </div>
 
               <div className="flex items-start space-x-3">
                 <Phone className="w-4 h-4 mt-1 shrink-0 text-[hsl(var(--gold))]" />
-                <span>+254 742 981 681</span>
+                <a 
+                  href="tel:+254742981681"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    letterSpacing: "0.03em",
+                  }}
+                  className="hover:text-[hsl(var(--gold))] transition-colors duration-300"
+                >
+                  +254 742 981 681
+                </a>
               </div>
 
               <div className="flex items-start space-x-3">
                 <Mail className="w-4 h-4 mt-1 shrink-0 text-[hsl(var(--gold))]" />
-                <span>novanistudio.ke@gmail.com</span>
+                <a 
+                  href="mailto:novanistudio.ke@gmail.com"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    letterSpacing: "0.03em",
+                  }}
+                  className="hover:text-[hsl(var(--gold))] transition-colors duration-300"
+                >
+                  novanistudio.ke@gmail.com
+                </a>
               </div>
             </div>
           </div>
 
           {/* Business Hours */}
           <div className="space-y-6">
-            <h4 className="font-serif text-lg tracking-wide">
+            <h4 
+              className="text-lg tracking-wide"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
               Business Hours
             </h4>
 
@@ -135,20 +205,61 @@ const Footer = ({ onNavigate }: FooterProps) => {
               <div className="flex items-start space-x-3">
                 <Clock className="w-4 h-4 mt-1 shrink-0 text-[hsl(var(--gold))]" />
                 <div>
-                  <p>Monday – Friday</p>
-                  <p>9:00 AM – 5:00 PM</p>
+                  <p 
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 300,
+                      letterSpacing: "0.03em",
+                    }}
+                  >
+                    Monday – Friday
+                  </p>
+                  <p 
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 300,
+                      letterSpacing: "0.03em",
+                    }}
+                  >
+                    9:00 AM – 5:00 PM
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3">
                 <Clock className="w-4 h-4 mt-1 shrink-0 text-[hsl(var(--gold))]" />
                 <div>
-                  <p>Saturday</p>
-                  <p>10:00 AM – 4:00 PM</p>
+                  <p 
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 300,
+                      letterSpacing: "0.03em",
+                    }}
+                  >
+                    Saturday
+                  </p>
+                  <p 
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 300,
+                      letterSpacing: "0.03em",
+                    }}
+                  >
+                    10:00 AM – 4:00 PM
+                  </p>
                 </div>
               </div>
 
-              <p className="ml-7">Sunday – Closed</p>
+              <p 
+                className="ml-7"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  letterSpacing: "0.03em",
+                }}
+              >
+                Sunday – Closed
+              </p>
             </div>
           </div>
         </div>
@@ -159,7 +270,14 @@ const Footer = ({ onNavigate }: FooterProps) => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
 
-          <p className="text-sm text-[hsl(var(--warm-white))/60] tracking-wide">
+          <p 
+            className="text-sm text-[hsl(var(--warm-white))/60] tracking-wide"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              letterSpacing: "0.06em",
+            }}
+          >
             © {currentYear} NOVANI Studio. All rights reserved.
           </p>
 

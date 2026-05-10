@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&...');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @import "tailwindcss";
-
-
 
 @layer base {
   :root {
@@ -39,20 +37,68 @@
 }
 
 @layer base {
-  
   body {
     background-color: hsl(var(--warm-white));
     color: hsl(var(--foreground));
     font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
+  /* ALL headings - Inter Light with wide tracking (replaces Cormorant) */
+  h1, h2, h3, h4, h5, h6,
+  .heading,
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
+
+  /* Subheadings */
+  .subheading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+
+  /* Body text */
+  p, .body-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    line-height: 1.7;
+  }
+
+  /* Small text, captions */
+  .small-text,
+  .caption {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  /* Button text */
+  button, .btn-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+  }
+
+  /* Navigation */
+  .nav-item {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Remove the old Cormorant Garamond styles */
+  /* .font-serif, h1, h2, h3, h4 { ... } - REMOVED */
 }
 
 @layer utilities {
@@ -75,8 +121,46 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+/* Custom scrollbar for the entire site - Luxury Editorial Style */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--charcoal));
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold));
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 2px;
+}
+
+::-webkit-scrollbar-track:horizontal {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: hsl(var(--gold));
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background: hsl(var(--charcoal));
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--charcoal)) rgba(0, 0, 0, 0.05);
+}

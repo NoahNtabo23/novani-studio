@@ -19,52 +19,59 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32"
+      className="relative bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32 overflow-visible"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
 
         <div className="flex flex-col md:flex-row gap-16 items-center">
 
           {/* IMAGE */}
           <div
             className={`
-              w-full lg:w-[45%]
+              w-full md:w-[45%]
               transition-all duration-1000
               ${isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-12 -translate-x-6"}
             `}
           >
             <img
               src={aboutImage}
-              alt="NOVANI Studio Workspace"
+              alt="NOVANI Studio design workspace showcasing craftsmanship"
               className="w-full h-[480px] object-cover rounded-sm shadow-lg"
             />
           </div>
 
           {/* TEXT */}
-          <div className="w-full lg:w-[55%]">
+          <div className="w-full md:w-[55%]">
 
-            {/* TITLE */}
+            {/* TITLE - Updated to Inter Light */}
             <h2
               className={`
-                font-serif mb-8 transition-all duration-1000
+                mb-8 transition-all duration-1000
                 ${isVisible ? "opacity-100 translate-y-0 delay-200" : "opacity-0 translate-y-10"}
               `}
               style={{
-                fontSize: "clamp(2.8rem, 4vw, 4.5rem)",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                letterSpacing: "0.15em",
+                fontSize: "clamp(2rem, 4vw, 3.5rem)",
                 color: "hsl(var(--charcoal))",
-                lineHeight: 1.1,
+                lineHeight: 1.3,
+                textTransform: "uppercase",
               }}
             >
               About NOVANI Studio
             </h2>
 
-            {/* PARAGRAPHS */}
+            {/* PARAGRAPHS - Updated to Inter Light */}
             <div
-              className="space-y-6 font-sans"
+              className="space-y-6"
               style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
                 color: "hsla(var(--foreground), 0.85)",
-                fontSize: "1.05rem",
+                fontSize: "1rem",
                 lineHeight: "1.8",
+                letterSpacing: "0.03em",
               }}
             >
               <p
@@ -104,6 +111,10 @@ const About = () => {
 
           </div>
         </div>
+
+        {/* CONTINUING HAIRLINE RULES - Solid BLACK lines for white background */}
+        <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
+        <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
 
       </div>
     </section>

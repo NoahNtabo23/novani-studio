@@ -19,18 +19,27 @@ const WhatsAppButton = () => {
       rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-8 right-8 z-40 flex items-center gap-3 px-4 py-3 rounded-full shadow-lg transition-luxury group"
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-3 py-3 rounded-full transition-all duration-500 hover:scale-105 active:scale-95 group shadow-md"
       style={{
-        backgroundColor: "hsl(var(--gold))",
+        backgroundColor: "hsl(var(--warm-white))",
+        border: `1px solid hsl(var(--charcoal))`,
         color: "hsl(var(--charcoal))",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <MessageCircle size={24} />
+      <MessageCircle size={20} strokeWidth={1.5} />
 
       <span
-        className={`font-sans text-sm font-medium whitespace-nowrap overflow-hidden transition-all duration-500 ${
-          isHovered ? "max-w-[150px] opacity-100" : "max-w-0 opacity-0"
-        }`}
+        className={`
+          text-[11px] font-light tracking-wide uppercase
+          whitespace-nowrap overflow-hidden transition-all duration-500
+          ${isHovered ? "max-w-[120px] opacity-100 ml-1" : "max-w-0 opacity-0 ml-0"}
+        `}
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontWeight: 300,
+          letterSpacing: "0.15em",
+        }}
       >
         Chat with us
       </span>

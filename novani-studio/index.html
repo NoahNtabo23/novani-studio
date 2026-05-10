@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Inter font family - Light, Extra Light, and Regular weights -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NOVANI Studio | Luxury Interior Design in Nairobi</title>
@@ -85,6 +87,104 @@
         <div class="brand-name">NOVANI STUDIO</div>
         <div class="loading-text">
           Loading refined spaces<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html><!doctype html>
+<html lang="en">
+  <head>
+    <!-- Inter font family - Light, Extra Light, and Regular weights -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOVANI Studio | Luxury Interior Design in Nairobi</title>
+    <meta name="description" content="NOVANI Studio - Premium interior design studio in Nairobi specializing in luxury kitchens, wardrobes, and residential interiors." />
+    <meta name="author" content="NOVANI Studio" />
+    <meta property="og:title" content="NOVANI Studio | Luxury Interior Design in Nairobi" />
+    <meta property="og:description" content="Premium interior design studio in Nairobi specializing in luxury kitchens, wardrobes, and residential interiors." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/logo.png" />
+    
+    <!-- Preload critical fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Loading skeleton styles - ONLY for the preload element */
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 0.8; }
+      }
+      
+      #preload {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #FAF7F2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: 'Inter', sans-serif;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .spinner {
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-top-color: #D4AF37;
+        border-radius: 50%;
+        animation: spin 0.8s ease-in-out infinite;
+        margin: 0 auto 1.5rem;
+      }
+      
+      .brand-name {
+        color: #2C2C2C;
+        letter-spacing: 0.2em;
+        font-size: 0.875rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        font-family: 'Inter', sans-serif;
+      }
+      
+      .loading-text {
+        color: rgba(44, 44, 44, 0.5);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+      
+      .dot {
+        display: inline-block;
+        animation: pulse 1.4s ease-in-out infinite;
+      }
+      
+      .dot:nth-child(2) { animation-delay: 0.2s; }
+      .dot:nth-child(3) { animation-delay: 0.4s; }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading skeleton - visible until React hydrates -->
+      <div id="preload">
+        <div class="spinner"></div>
+        <div class="brand-name">NOVANI STUDIO</div>
+        <div class="loading-text">
+          LOADING<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
         </div>
       </div>
     </div>

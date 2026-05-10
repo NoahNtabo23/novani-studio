@@ -64,7 +64,6 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Handle form submission with email.js and validation using Zod
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -99,42 +98,55 @@ const Contact = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-32 px-6 md:px-12 lg:px-24"
+      className="relative py-32 px-6 md:px-12 lg:px-24 overflow-visible"
       style={{ backgroundColor: "hsl(var(--warm-white))" }}
     >
       <div className="max-w-3xl mx-auto text-center">
-        {/* Heading */}
+        {/* Heading - Updated to Inter Light */}
         <h2
-          className={`font-serif text-5xl md:text-6xl tracking-wide mb-6 ${
+          className={`text-5xl md:text-6xl mb-6 ${
             isVisible ? "fade-in-up" : "opacity-0"
           }`}
-          style={{ color: "hsl(var(--charcoal))" }}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            letterSpacing: "0.15em",
+            color: "hsl(var(--charcoal))",
+            textTransform: "uppercase",
+          }}
         >
           Get In Touch
         </h2>
 
-        {/* Subheading */}
+        {/* Subheading - Light, refined */}
         <p
-          className={`text-xl md:text-2xl mb-8 ${
+          className={`text-xl md:text-2xl mb-8 font-light tracking-wide ${
             isVisible ? "fade-in-up delay-200" : "opacity-0"
           }`}
-          style={{ color: "hsl(var(--charcoal))" }}
+          style={{ 
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            color: "hsla(var(--charcoal), 0.8)",
+          }}
         >
           Elevate your space with refined, timeless design.
         </p>
 
-        {/* Description */}
+        {/* Description - Minimal */}
         <div
           className={`space-y-3 mb-16 ${
             isVisible ? "fade-in-up delay-300" : "opacity-0"
           }`}
-          style={{ color: "hsla(var(--foreground), 0.65)" }}
+          style={{ color: "hsla(var(--foreground), 0.6)", fontWeight: 300 }}
         >
-          <p>Every project begins with a conversation.</p>
-          <p>
-            Share a few details below and our team will respond within 24 hours.
-          </p>
-          <p className="italic">
+          <p 
+            className="text-lg"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontStyle: "italic",
+            }}
+          >
             Your journey to an elevated, bespoke interior starts here.
           </p>
         </div>
@@ -146,7 +158,7 @@ const Contact = () => {
             isVisible ? "fade-in-up delay-400" : "opacity-0"
           }`}
         >
-          {/* Inputs */}
+          {/* Name, Email, Phone - Black border-bottom */}
           {["name", "email", "phone"].map((field, index) => (
             <input
               key={field}
@@ -162,52 +174,100 @@ const Contact = () => {
               onChange={(e) =>
                 setFormData({ ...formData, [field]: e.target.value })
               }
-              className="w-full px-6 py-5 rounded-md border bg-[hsl(var(--cream))] border-[hsl(var(--border))] text-sm transition-all duration-500 focus:outline-none focus:border-[hsl(var(--gold))] focus:bg-white"
+              className="w-full px-0 py-4 border-b bg-transparent text-[hsl(var(--charcoal))] text-sm transition-all duration-500 focus:outline-none focus:border-[hsl(var(--gold))] placeholder:text-[hsla(var(--foreground),0.4)]"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                borderBottomColor: "#000000",
+                borderBottomWidth: "1px",
+              }}
             />
           ))}
 
-          {/* Message */}
+          {/* Message - Full black borders (all sides) */}
           <div>
             <textarea
-              rows={6}
-              placeholder="Message"
+              rows={5}
+              placeholder="Tell us about your space and design goals..."
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
-              className="w-full px-6 py-5 rounded-md border bg-[hsl(var(--cream))] border-[hsl(var(--border))] text-sm resize-none transition-all duration-500 focus:outline-none focus:border-[hsl(var(--gold))] focus:bg-white"
+              className="w-full px-5 py-4 bg-transparent text-[hsl(var(--charcoal))] text-sm resize-none transition-all duration-500 focus:outline-none focus:border-[hsl(var(--gold))] placeholder:text-[hsla(var(--foreground),0.4)] rounded-none"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                border: "1px solid #000000",
+              }}
             />
-
-            <p
-              className="text-sm mt-3"
-              style={{ color: "hsla(var(--foreground), 0.55)" }}
-            >
-              Tell us about your space and design goals.
-            </p>
           </div>
 
-          {/* Button */}
+          {/* Button - Black border, darker on hover */}
           <button
             type="submit"
             className="
-                w-full py-6 rounded-md text-sm tracking-widest font-semibold
-                transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
-                hover:-translate-y-1 hover:shadow-xl
-                active:-translate-y-1 active:shadow-xl
-              "
+              group relative
+              w-full
+              px-12 py-4
+              text-[11px] md:text-xs
+              font-light
+              tracking-[0.25em]
+              uppercase
+              transition-all duration-500
+              hover:-translate-y-0.5
+              active:translate-y-0
+            "
             style={{
-              backgroundColor: "hsl(var(--gold))",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              backgroundColor: "transparent",
               color: "hsl(var(--charcoal))",
+              border: "1px solid #000000",
             }}
           >
-            Request a Consultation
+            <span className="relative z-10">Request a Consultation</span>
+            
+            {/* Darker hover effect - solid charcoal with gold tint */}
+            <span
+              className="
+                absolute inset-0
+                opacity-0
+                group-hover:opacity-100
+                transition-all duration-500
+              "
+              style={{
+                backgroundColor: "hsl(var(--charcoal))",
+              }}
+            />
+            <span
+              className="
+                absolute inset-0
+                opacity-0
+                group-hover:opacity-100
+                transition-opacity duration-500
+                flex items-center justify-center
+              "
+              style={{
+                color: "hsl(var(--gold))",
+              }}
+            >
+              <span className="relative z-10">Request a Consultation</span>
+            </span>
           </button>
         </form>
 
+        {/* FAQ Section */}
         <div className="mt-28 max-w-4xl mx-auto">
+          {/* FAQ Title - Updated to Inter Light */}
           <h3
-            className="font-serif text-4xl text-center mb-12"
-            style={{ color: "hsl(var(--charcoal))" }}
+            className="text-4xl text-center mb-12"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              letterSpacing: "0.15em",
+              color: "hsl(var(--charcoal))",
+              textTransform: "uppercase",
+            }}
           >
             Frequently Asked Questions
           </h3>
@@ -219,7 +279,7 @@ const Contact = () => {
               return (
                 <div
                   key={index}
-                  className="border-b border-[hsla(var(--foreground),0.15)] pb-6 group"
+                  className="border-b border-[hsla(var(--foreground),0.1)] pb-6 group"
                 >
                   <button
                     onClick={() => setOpenFAQ(isOpen ? null : index)}
@@ -228,9 +288,13 @@ const Contact = () => {
                       color: isOpen ? "hsl(var(--gold))" : "hsl(var(--charcoal))",
                     }}
                   >
+                    {/* FAQ Question - Updated to Inter Light */}
                     <span
-                      className="font-medium text-lg transition-colors duration-300 group-hover:text-[hsl(var(--gold))]"
+                      className="text-base md:text-lg tracking-wide transition-colors duration-300 group-hover:text-[hsl(var(--gold))]"
                       style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 300,
+                        letterSpacing: "0.1em",
                         color: isOpen ? "hsl(var(--gold))" : "hsl(var(--charcoal))",
                       }}
                     >
@@ -245,7 +309,7 @@ const Contact = () => {
                             ? "opacity-0 rotate-90 scale-75"
                             : "opacity-100 rotate-0 scale-100"
                         }`}
-                        style={{ fontSize: "1.5rem", lineHeight: 1 }}
+                        style={{ fontSize: "1.5rem", lineHeight: 1, fontWeight: 300 }}
                       >
                         +
                       </span>
@@ -255,14 +319,14 @@ const Contact = () => {
                             ? "opacity-100 rotate-0 scale-100"
                             : "opacity-0 -rotate-90 scale-75"
                         }`}
-                        style={{ fontSize: "1.25rem", lineHeight: 1 }}
+                        style={{ fontSize: "1rem", lineHeight: 1, fontWeight: 300 }}
                       >
                         ✕
                       </span>
                     </div>
                   </button>
 
-                  {/* Smooth accordion animation with max-height transition */}
+                  {/* Accordion answer */}
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ${
                       isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
@@ -270,7 +334,13 @@ const Contact = () => {
                   >
                     <p
                       className="mt-4 text-base leading-relaxed pb-2"
-                      style={{ color: "hsla(var(--foreground),0.7)" }}
+                      style={{ 
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 300,
+                        color: "hsla(var(--foreground),0.7)",
+                        lineHeight: 1.7,
+                        letterSpacing: "0.02em",
+                      }}
                     >
                       {faq.answer}
                     </p>
@@ -281,14 +351,14 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Direct contact */}
-        <p
-          className="text-sm mt-10 italic fade-in-up delay-600"
-          style={{ color: "hsla(var(--foreground), 0.5)" }}
-        >
-          Your information is treated with complete discretion.
-        </p>
+        {/* Discretion note */}
+        
+        
       </div>
+
+      {/* HAIRLINE RULES - Solid black lines matching About section */}
+      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
+      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
     </section>
   );
 };
