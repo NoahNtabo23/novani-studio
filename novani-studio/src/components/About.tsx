@@ -25,10 +25,10 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row gap-16 items-center">
 
-          {/* IMAGE */}
+          {/* IMAGE - Larger on desktop (60% instead of 45%) */}
           <div
             className={`
-              w-full md:w-[45%]
+              w-full md:w-[60%]
               transition-all duration-1000
               ${isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-12 -translate-x-6"}
             `}
@@ -36,14 +36,14 @@ const About = () => {
             <img
               src={aboutImage}
               alt="NOVANI Studio design workspace showcasing craftsmanship"
-              className="w-full h-[480px] object-cover rounded-sm shadow-lg"
+              className="w-full h-[480px] md:h-[560px] object-cover rounded-sm shadow-lg"
             />
           </div>
 
-          {/* TEXT */}
-          <div className="w-full md:w-[55%]">
+          {/* TEXT - Smaller on desktop (40% instead of 55%) */}
+          <div className="w-full md:w-[40%]">
 
-            {/* TITLE - Updated to Inter Light */}
+            {/* TITLE */}
             <h2
               className={`
                 mb-8 transition-all duration-1000
@@ -62,7 +62,7 @@ const About = () => {
               About NOVANI Studio
             </h2>
 
-            {/* PARAGRAPHS - Updated to Inter Light */}
+            {/* PARAGRAPHS */}
             <div
               className="space-y-6"
               style={{
@@ -106,13 +106,11 @@ const About = () => {
                 excellence, we craft interiors that reflect the unique
                 personalities and lifestyles of our discerning clients.
               </p>
-
             </div>
-
           </div>
         </div>
 
-        {/* CONTINUING HAIRLINE RULES - Solid BLACK lines for white background */}
+        {/* HAIRLINE RULES - SAME POSITION AS HERO AND CONTACT (8%) */}
         <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
         <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
 

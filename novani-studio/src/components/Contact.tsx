@@ -120,7 +120,7 @@ const Contact = () => {
 
         {/* Subheading - Light, refined */}
         <p
-          className={`text-xl md:text-2xl mb-8 font-light tracking-wide ${
+          className={`text-xl md:text-2xl mb-16 font-light tracking-wide ${
             isVisible ? "fade-in-up delay-200" : "opacity-0"
           }`}
           style={{ 
@@ -129,27 +129,8 @@ const Contact = () => {
             color: "hsla(var(--charcoal), 0.8)",
           }}
         >
-          Elevate your space with refined, timeless design.
+          Your journey to an elevated, bespoke interior starts here.
         </p>
-
-        {/* Description - Minimal */}
-        <div
-          className={`space-y-3 mb-16 ${
-            isVisible ? "fade-in-up delay-300" : "opacity-0"
-          }`}
-          style={{ color: "hsla(var(--foreground), 0.6)", fontWeight: 300 }}
-        >
-          <p 
-            className="text-lg"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 300,
-              fontStyle: "italic",
-            }}
-          >
-            Your journey to an elevated, bespoke interior starts here.
-          </p>
-        </div>
 
         {/* Form */}
         <form
@@ -202,7 +183,7 @@ const Contact = () => {
             />
           </div>
 
-          {/* Button - Black border, darker on hover */}
+          {/* Button - Same style as Hero section (Gold background, white on hover) */}
           <button
             type="submit"
             className="
@@ -220,14 +201,14 @@ const Contact = () => {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 300,
-              backgroundColor: "transparent",
+              backgroundColor: "hsl(var(--gold))",
               color: "hsl(var(--charcoal))",
-              border: "1px solid #000000",
+              border: "1px solid hsl(var(--gold))",
             }}
           >
             <span className="relative z-10">Request a Consultation</span>
             
-            {/* Darker hover effect - solid charcoal with gold tint */}
+            {/* White overlay on hover (matches Hero button) */}
             <span
               className="
                 absolute inset-0
@@ -236,9 +217,11 @@ const Contact = () => {
                 transition-all duration-500
               "
               style={{
-                backgroundColor: "hsl(var(--charcoal))",
+                backgroundColor: "white",
               }}
             />
+            
+            {/* Text stays charcoal on hover */}
             <span
               className="
                 absolute inset-0
@@ -248,7 +231,7 @@ const Contact = () => {
                 flex items-center justify-center
               "
               style={{
-                color: "hsl(var(--gold))",
+                color: "hsl(var(--charcoal))",
               }}
             >
               <span className="relative z-10">Request a Consultation</span>

@@ -8,20 +8,20 @@ interface HeroProps {
 const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
   return (
     <section id="home" className="relative h-screen w-full overflow-visible">
-      {/* Hero Image with subtle dark overlay */}
+      {/* Hero Image with subtle dark overlay - slightly darker for better text contrast */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Luxury Kitchen Interior by NOVANI Studio"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
-      {/* Wordmark — subtle, minimal, top center */}
+      {/* Wordmark — more visible on desktop */}
       <div className="relative z-10 pt-8 md:pt-10 flex justify-center fade-in">
         <span 
-          className="text-white/70 text-[11px] md:text-xs font-light uppercase tracking-[0.3em]"
+          className="text-white text-[11px] md:text-sm font-light uppercase tracking-[0.3em] drop-shadow-sm"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           NOVANI Studio
@@ -29,13 +29,14 @@ const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
       </div>
 
       {/* CTAs — anchored low to let the image breathe */}
-      <div className="absolute inset-x-0 bottom-[15%] md:bottom-[19%] z-10 flex flex-col items-center gap-5 px-6">
-        {/* Primary CTA Button - Turns solid white on hover */}
+      <div className="absolute inset-x-0 bottom-[15%] md:bottom-[19%] z-10 flex flex-col items-center gap-6 px-6">
+        
+        {/* Primary CTA Button - Gold border + background, white on hover */}
         <button
           onClick={onExploreClick}
           className="
             group relative
-            px-10 py-3.5 md:px-12 md:py-4
+            px-10 py-4 md:px-14 md:py-4.5
             text-[11px] md:text-xs
             font-light
             tracking-[0.25em]
@@ -46,14 +47,14 @@ const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
           "
           style={{
             fontFamily: "'Inter', sans-serif",
-            backgroundColor: "transparent",
-            color: "white",
-            border: "1px solid rgba(255, 255, 255, 0.5)",
+            backgroundColor: "hsl(var(--gold))",
+            color: "hsl(var(--charcoal))",
+            border: "1px solid hsl(var(--gold))",
           }}
         >
           <span className="relative z-10">Explore Our Work</span>
           
-          {/* White background on hover */}
+          {/* White overlay on hover */}
           <span
             className="
               absolute inset-0
@@ -66,7 +67,7 @@ const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
             }}
           />
           
-          {/* Text turns charcoal on hover */}
+          {/* Text turns charcoal on hover (already charcoal, but maintain) */}
           <span
             className="
               absolute inset-0
@@ -83,7 +84,7 @@ const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
           </span>
         </button>
 
-        {/* Secondary Link - Get in Touch with gold underline on hover */}
+        {/* Secondary Link - Full white border, gold on hover */}
         <a
           href="#contact"
           onClick={(e) => {
@@ -93,7 +94,7 @@ const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
           className="
             group/link
             relative
-            text-white/60
+            text-white
             text-[10px] md:text-[11px]
             font-light
             tracking-[0.2em]
@@ -103,38 +104,27 @@ const Hero = ({ onExploreClick, onContactClick }: HeroProps) => {
           "
           style={{ 
             fontFamily: "'Inter', sans-serif",
-            textDecoration: "none" 
+            textDecoration: "none",
+            border: "1px solid white",
+            padding: "0.75rem 2rem",
+            borderRadius: "0",
           }}
         >
           <span className="transition-colors duration-300 group-hover/link:text-[hsl(var(--gold))]">
             Get in Touch
           </span>
-          {/* Underline that appears on hover */}
-          <span
-            className="
-              absolute
-              -bottom-1
-              left-0
-              w-0
-              h-px
-              transition-all duration-300
-              group-hover/link:w-full
-            "
-            style={{
-              backgroundColor: "hsl(var(--gold))",
-            }}
-          />
+          {/* Remove the underline since we have full border now */}
         </a>
       </div>
 
-      {/* Minimal Scroll Indicator */}
+      {/* Minimal Scroll Indicator - more visible */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in delay-800 z-10">
-        <div className="w-px h-12 bg-white/30 animate-pulse" />
+        <div className="w-px h-16 bg-white/50 animate-pulse" />
       </div>
 
-      {/* Vertical Hairline Rules - Solid white lines (fully visible, no fade) */}
-      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-white/60 h-full pointer-events-none z-20" />
-      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-white/60 h-full pointer-events-none z-20" />
+      {/* Vertical Hairline Rules - More visible on desktop */}
+      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-white/80 h-full pointer-events-none z-20" />
+      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-white/80 h-full pointer-events-none z-20" />
     </section>
   );
 };
