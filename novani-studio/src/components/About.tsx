@@ -21,17 +21,17 @@ const About = () => {
       ref={sectionRef}
       className="relative bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32 overflow-visible"
     >
-      {/* HAIRLINE RULES - Same as Contact section, higher z-index to stay above content */}
-      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-20" />
-      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-20" />
+      {/* HAIRLINE RULES - Higher z-index, positioned at 8% */}
+      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-30" />
+      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-30" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-16 items-center">
+        <div className="flex flex-col md:flex-row gap-16 items-start">
           
-          {/* IMAGE - Constrained within hairlines with overflow protection */}
+          {/* IMAGE - Adjusted width to fit within hairlines */}
           <div
             className={`
-              w-full md:w-[55%]
+              w-full md:w-[50%]
               transition-all duration-1000
               ${isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-12 -translate-x-6"}
             `}
@@ -44,16 +44,14 @@ const About = () => {
                 style={{
                   maxWidth: "100%",
                   display: "block",
-                  objectPosition: "center",
-                  width: "100%",
-                  height: "100%",
+                  objectPosition: "center center",
                 }}
               />
             </div>
           </div>
 
-          {/* TEXT */}
-          <div className="w-full md:w-[45%]">
+          {/* TEXT - Adjusted width to balance */}
+          <div className="w-full md:w-[50%]">
             <h2
               className={`
                 mb-8 transition-all duration-1000
