@@ -21,7 +21,7 @@ const About = () => {
       ref={sectionRef}
       className="relative bg-[hsl(var(--warm-white))] py-32 overflow-visible"
     >
-      {/* HAIRLINE RULES - Positioned at 8% from edges */}
+      {/* HAIRLINE RULES */}
       <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-30" />
       <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-30" />
 
@@ -36,7 +36,7 @@ const About = () => {
       >
         <div className="flex flex-col md:flex-row gap-16 items-center">
           
-          {/* IMAGE - Full width within container */}
+          {/* IMAGE */}
           <div
             className={`
               w-full md:w-1/2
@@ -57,8 +57,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* TEXT - Full width within container */}
-          <div className="w-full md:w-1/2">
+          {/* TEXT - Added right padding for breathing room from hairline */}
+          <div className="w-full md:w-1/2 md:pr-8 lg:pr-12">
             <h2
               className={`
                 mb-8 transition-all duration-1000
