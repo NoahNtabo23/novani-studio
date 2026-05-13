@@ -21,29 +21,36 @@ const About = () => {
       ref={sectionRef}
       className="relative bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32 overflow-visible"
     >
+      {/* HAIRLINE RULES - Same as Contact section */}
+      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-10" />
+      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-10" />
+
       <div className="max-w-7xl mx-auto">
-
         <div className="flex flex-col md:flex-row gap-16 items-center">
-
-          {/* IMAGE - Larger on desktop (60% instead of 45%) */}
+          
+          {/* IMAGE - Constrained within hairlines */}
           <div
             className={`
-              w-full md:w-[60%]
+              w-full md:w-[55%]
               transition-all duration-1000
               ${isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-12 -translate-x-6"}
             `}
           >
-            <img
-              src={aboutImage}
-              alt="NOVANI Studio design workspace showcasing craftsmanship"
-              className="w-full h-[480px] md:h-[560px] object-cover rounded-sm shadow-lg"
-            />
+            <div className="relative w-full overflow-hidden">
+              <img
+                src={aboutImage}
+                alt="NOVANI Studio design workspace showcasing craftsmanship"
+                className="w-full h-[480px] md:h-[560px] object-cover rounded-sm shadow-lg"
+                style={{
+                  maxWidth: "100%",
+                  display: "block",
+                }}
+              />
+            </div>
           </div>
 
-          {/* TEXT - Smaller on desktop (40% instead of 55%) */}
-          <div className="w-full md:w-[40%]">
-
-            {/* TITLE */}
+          {/* TEXT */}
+          <div className="w-full md:w-[45%]">
             <h2
               className={`
                 mb-8 transition-all duration-1000
@@ -62,7 +69,6 @@ const About = () => {
               About NOVANI Studio
             </h2>
 
-            {/* PARAGRAPHS */}
             <div
               className="space-y-6"
               style={{
@@ -109,11 +115,6 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        {/* HAIRLINE RULES - SAME POSITION AS HERO AND CONTACT (8%) */}
-        <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
-        <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-0" />
-
       </div>
     </section>
   );
