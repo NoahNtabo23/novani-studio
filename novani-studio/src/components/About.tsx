@@ -19,19 +19,27 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32 overflow-visible"
+      className="relative bg-[hsl(var(--warm-white))] py-32 overflow-visible"
     >
-      {/* HAIRLINE RULES - Higher z-index, positioned at 8% */}
+      {/* HAIRLINE RULES - Positioned at 8% from edges */}
       <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-30" />
       <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-30" />
 
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-16 items-start">
+      {/* Content container - spans exactly between the hairlines */}
+      <div 
+        className="relative mx-auto"
+        style={{
+          width: "84%",
+          marginLeft: "8%",
+          marginRight: "8%",
+        }}
+      >
+        <div className="flex flex-col md:flex-row gap-16 items-center">
           
-          {/* IMAGE - Adjusted width to fit within hairlines */}
+          {/* IMAGE - Full width within container */}
           <div
             className={`
-              w-full md:w-[50%]
+              w-full md:w-1/2
               transition-all duration-1000
               ${isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-12 -translate-x-6"}
             `}
@@ -42,7 +50,6 @@ const About = () => {
                 alt="NOVANI Studio design workspace showcasing craftsmanship"
                 className="w-full h-[480px] md:h-[560px] object-cover"
                 style={{
-                  maxWidth: "100%",
                   display: "block",
                   objectPosition: "center center",
                 }}
@@ -50,8 +57,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* TEXT - Adjusted width to balance */}
-          <div className="w-full md:w-[50%]">
+          {/* TEXT - Full width within container */}
+          <div className="w-full md:w-1/2">
             <h2
               className={`
                 mb-8 transition-all duration-1000
