@@ -21,14 +21,14 @@ const About = () => {
       ref={sectionRef}
       className="relative bg-[hsl(var(--warm-white))] px-6 md:px-12 lg:px-24 py-32 overflow-visible"
     >
-      {/* HAIRLINE RULES - Same as Contact section */}
-      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-10" />
-      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-10" />
+      {/* HAIRLINE RULES - Same as Contact section, higher z-index to stay above content */}
+      <div className="hidden lg:block absolute left-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-20" />
+      <div className="hidden lg:block absolute right-[8%] top-0 w-px bg-black/30 h-full pointer-events-none z-20" />
 
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-16 items-center">
           
-          {/* IMAGE - Constrained within hairlines */}
+          {/* IMAGE - Constrained within hairlines with overflow protection */}
           <div
             className={`
               w-full md:w-[55%]
@@ -36,14 +36,17 @@ const About = () => {
               ${isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-12 -translate-x-6"}
             `}
           >
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden rounded-sm shadow-lg">
               <img
                 src={aboutImage}
                 alt="NOVANI Studio design workspace showcasing craftsmanship"
-                className="w-full h-[480px] md:h-[560px] object-cover rounded-sm shadow-lg"
+                className="w-full h-[480px] md:h-[560px] object-cover"
                 style={{
                   maxWidth: "100%",
                   display: "block",
+                  objectPosition: "center",
+                  width: "100%",
+                  height: "100%",
                 }}
               />
             </div>
